@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="clas" catalog="db_banjiguanli"
+		class="com.liying.model.Clas">
+	</table>
+	<table name="student" catalog="db_banjiguanli"
+		class="com.liying.model.Student">
+	</table>
+	<table name="grade" catalog="db_banjiguanli"
+		class="com.liying.model.Grade">
+	</table>
+	<table name="course" catalog="db_banjiguanli" class="com.liying.model.Course"></table>
+</hibernate-reverse-engineering>

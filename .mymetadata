@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="ClassManager"
+  id="myeclipse.1491824642196"
+  context-root="/ClassManager"
+  j2ee-spec="6.0"
+  archive="ClassManager.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

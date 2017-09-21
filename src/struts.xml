@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+    <constant name="struts.i18n.encoding" value="utf-8" />
+    <package name="json" namespace="/" extends="json-default">
+	
+        <action name="loginAction" class="studentAction" method="studentLogin">
+        	<result name="success" type="json">
+        	<param name="root">state</param>
+        	</result>
+        </action>
+ 
+       <action name="addStudent" class="studentAction" method="addStudentInfo">
+        	 		 <result name="success" type="json">
+        			 <param name="root">state</param>
+        			 </result>
+        </action>
+               
+        <action name="addClass" class="classAction" method="addClass">
+        	<result name="success" type="json">
+        	<param name="root">state</param>
+        	</result>
+        </action>
+        
+        <action name="deleteClass" class="classAction" method="deleteClass">
+        	<result name="success" type="json">
+        	<param name="root">state</param>
+        	</result>
+        </action>
+        
+        <action name="updateClass" class="classAction" method="updateClassInfo">
+        	 		 <result name="success" type="json">
+        			 <param name="root">state</param>
+        			 </result>
+        </action>
+        
+        <!-- <action name="studentInfo" class="studentAction" method="forStudentInfo">
+        	<result name="success" type="json">
+        	<param name="root">students</param>
+        	</result>
+        </action> (无法返回正确的json对象)-->
+        
+        <action name="updateStudent" class="studentAction" method="updateStudentInfo">
+        	 		 <result name="success" type="json">
+        			 <param name="root">state</param>
+        			 </result>
+        </action>
+        
+        <action name="deleteStudent" class="studentAction" method="deleteStudentInfo">
+        	 		 <result name="success" type="json">
+        			 <param name="root">state</param>
+        			 </result>
+        </action>
+        
+        <action name="addCourse" class="courseAction" method="addCourse">
+        	 		 <result name="success" type="json">
+        			 <param name="root">state</param>
+        			 </result>
+        </action>
+        
+        <action name="deleteCourse" class="courseAction" method="deleteCourse">
+        	 		 <result name="success" type="json">
+        			 <param name="root">state</param>
+        			 </result>
+        </action>
+        
+        <action name="editCourse" class="courseAction" method="updateCourse">
+        	 		 <result name="success" type="json">
+        			 <param name="root">state</param>
+        			 </result>
+        </action>
+        
+        <action name="addGrade" class="gradeAction" method="addGrade">
+        	 		 <result name="success" type="json">
+        			 <param name="root">state</param>
+        			 </result>
+        </action>
+        	        
+    </package>
+    
+    <package name="main" namespace="/" extends="struts-default">
+    
+    		 <action name="allClassHtml" class="classAction" method="allClassInfo">
+        	 		 <result name="success">allClass.jsp</result>
+        	 		 <interceptor-ref name="defaultStack"></interceptor-ref>
+        	 </action>
+        	 
+        	 <action name="editClassJsp" class="classAction" method="editClassInfo">
+        	 		 <result name="success">editClass.jsp</result>
+        	 		 <interceptor-ref name="defaultStack"></interceptor-ref>
+        	 </action>
+        	
+        	 <action name="addStudentJsp" class="classAction" method="allClassInfo">
+        	 		 <result name="success">addStudent.jsp</result>
+        	 		 <interceptor-ref name="defaultStack"></interceptor-ref>
+        	 </action>
+        	 
+        	 <action name="allStudentJsp" class="classAction" method="allClassInfo">
+        	 		 <result name="success">allStudent.jsp</result>
+        	 		 <interceptor-ref name="defaultStack"></interceptor-ref>
+        	 </action>
+        	 
+        	 <action name="studentInfo" class="studentAction" method="forStudentInfo">
+        	 		 <result name="success">allStudent.jsp</result>
+        	 		 <interceptor-ref name="defaultStack"></interceptor-ref>
+        	 </action>
+        	 
+        	 <action name="editStudentJsp" class="studentAction" method="forTheStudentInfo">
+        	 		 <result name="success">editStudent.jsp</result>
+        	 		 <interceptor-ref name="defaultStack"></interceptor-ref>
+        	 </action>
+        	 
+        	 <action name="allCourseJsp" class="courseAction" method="forAllCourse">
+        	 		 <result name="success">allCourse.jsp</result>
+        	 		 <interceptor-ref name="defaultStack"></interceptor-ref>
+        	 </action>
+        	 
+        	 <action name="editCourseJsp" class="courseAction" method="gainTheCourse">
+        	 		 <result name="success">editCourse.jsp</result>
+        	 		 <interceptor-ref name="defaultStack"></interceptor-ref>
+        	 </action>
+        	 
+        	 <action name="addGradeJsp" class="gradeAction" method="CourseIdsAndStudentIds">
+        	 		 <result name="success">addGrade.jsp</result>
+        	 		 <interceptor-ref name="defaultStack"></interceptor-ref>
+        	 </action>
+        	 
+        	 <action name="studentGradeJsp" class="gradeAction" method="CourseIdsAndStudentIds">
+        	 		 <result name="success">studentGrade.jsp</result>
+        	 		 <interceptor-ref name="defaultStack"></interceptor-ref>
+        	 </action>
+        	 
+        	 <action name="courseGradeJsp" class="gradeAction" method="CourseIdsAndStudentIds">
+        	 		 <result name="success">courseGrade.jsp</result>
+        	 		 <interceptor-ref name="defaultStack"></interceptor-ref>
+        	 </action>
+        	 
+        	 <action name="theStudentGrade" class="gradeAction" method="returnTheStudentGrade">
+        	 		 <result name="success">studentGrade.jsp</result>
+        	 		 <interceptor-ref name="defaultStack"></interceptor-ref>
+        	 </action>
+        	 
+        	 <action name="theCourseGrade" class="gradeAction" method="returnTheCourseGrade">
+        	 		 <result name="success">courseGrade.jsp</result>
+        	 		 <interceptor-ref name="defaultStack"></interceptor-ref>
+        	 </action>
+        	 
+     </package>
+
+</struts>    

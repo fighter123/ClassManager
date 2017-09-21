@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+           ">
+    <!-- 告诉spring管理com.liying下面的所有包 -->
+    <context:annotation-config />
+	<context:component-scan base-package="com.liying" /> 
+	     
+    <!-- 声明数据库连接参数位置和文件名 -->
+    <bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:jdbc.properties</value>
+		</property>
+	</bean>    
+	<!-- 数据库连接配置 -->
+	<bean id="dataSource" destroy-method="close"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.p6spy.engine.spy.P6SpyDriver" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+		<!-- 使用spring的sessionFactory并把dataSource注入到里面 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+	
+		
+		<!-- 自动查找要管理的实体类 -->
+		<!--<property name="packagesToScan" value="com.sise.domain"/>	 -->	
+		<property name="packagesToScan">
+			<list>
+				<value>com.liying.model</value>
+			</list>
+		</property>
+		
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="format_sql">true</prop>
+			   <!--<prop key="javax.persistence.validation.mode">none</prop>--> 
+			   </props>
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>com.liying.model.Clas</value>
+				<value>com.liying.model.Student</value>
+				<value>com.liying.model.Grade</value>
+				<value>com.liying.model.Course</value></list>
+		</property></bean>
+	
+	<!-- 把sessionFactory注入到 hibrenateTemplate-->
+	<bean id="hibrenateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+</beans>
